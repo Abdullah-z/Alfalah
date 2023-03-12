@@ -3,7 +3,15 @@ import React from 'react';
 import {Text, Card, Block, Button} from '../components';
 import {useTheme} from '../hooks';
 import {useState} from 'react';
-import {Checkbox, CheckIcon, FormControl, Input, Select} from 'native-base';
+import {
+  Checkbox,
+  CheckIcon,
+  FormControl,
+  HStack,
+  Input,
+  Select,
+  Radio,
+} from 'native-base';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 export default function KYC() {
@@ -12,6 +20,9 @@ export default function KYC() {
   const [image, setImage] = useState(null);
   const [step, setStep] = useState(1);
 
+  const [isLifetimeExpiry, setIsLifetimeExpiry] = useState(false);
+  const [zakat, setZakat] = useState(false);
+  const [isOtherNationalities, setIsOtherNationalities] = useState('');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const showDatePicker = () => {
@@ -27,6 +38,7 @@ export default function KYC() {
     hideDatePicker();
   };
 
+  console.log('Life :  ' + isLifetimeExpiry);
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -154,13 +166,14 @@ export default function KYC() {
             <FormControl.Label marginTop={sizes.xs}>
               LIFETIME EXPIRY
             </FormControl.Label>
-            <Checkbox>Yes</Checkbox>
+            <Checkbox onChange={setIsLifetimeExpiry}>Yes</Checkbox>
 
             <FormControl.Label marginTop={sizes.xs} isRequired>
-              ISSUANCE DATE
+              EXPIRY DATE
             </FormControl.Label>
             <View>
               <Button
+                isDisabled={isLifetimeExpiry}
                 marginHorizontal={sizes.xs}
                 style={{borderWidth: 1}}
                 onPress={showDatePicker}>
@@ -173,6 +186,253 @@ export default function KYC() {
                 onCancel={hideDatePicker}
               />
             </View>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              DATE OF BIRTH
+            </FormControl.Label>
+            <View>
+              <Button
+                isDisabled={isLifetimeExpiry}
+                marginHorizontal={sizes.xs}
+                style={{borderWidth: 1}}
+                onPress={showDatePicker}>
+                <Text primary>Select Date</Text>
+              </Button>
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+              />
+            </View>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              PLACE OF BIRTH
+            </FormControl.Label>
+            <Select
+              backgroundColor={'white'}
+              minWidth="200"
+              accessibilityLabel="Choose Service"
+              placeholder="Select Place of Birth"
+              _selectedItem={{
+                bg: 'teal.600',
+                endIcon: <CheckIcon size={5} />,
+              }}
+              mt="1">
+              <Select.Item label="UX Research" value="ux" />
+              <Select.Item label="Web Development" value="web" />
+              <Select.Item label="Cross Platform Development" value="cross" />
+              <Select.Item label="UI Designing" value="ui" />
+              <Select.Item label="Backend Development" value="backend" />
+            </Select>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              GENDER
+            </FormControl.Label>
+            <Select
+              backgroundColor={'white'}
+              minWidth="200"
+              accessibilityLabel="Choose Service"
+              placeholder="Select Gender"
+              _selectedItem={{
+                bg: 'teal.600',
+                endIcon: <CheckIcon size={5} />,
+              }}
+              mt="1">
+              <Select.Item label="Male" value="ux" />
+              <Select.Item label="Female" value="web" />
+            </Select>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              RELIGION
+            </FormControl.Label>
+            <Select
+              backgroundColor={'white'}
+              minWidth="200"
+              accessibilityLabel="Choose Service"
+              placeholder="Select Religion"
+              _selectedItem={{
+                bg: 'teal.600',
+                endIcon: <CheckIcon size={5} />,
+              }}
+              mt="1">
+              <Select.Item label="Muslim" value="ux" />
+              <Select.Item label="Non-Muslim" value="web" />
+            </Select>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              ZAKAT DEDUCTION
+            </FormControl.Label>
+            <Radio.Group
+              name="myRadioGroup"
+              accessibilityLabel="favorite number">
+              <HStack>
+                <Radio value="one" onChange={setZakat} my={1}>
+                  Yes
+                </Radio>
+                <Radio style={{marginLeft: 25}} value="two" my={1}>
+                  No
+                </Radio>
+              </HStack>
+            </Radio.Group>
+
+            <Button
+              marginTop={sizes.sm}
+              primary
+              onPress={() => setStep(3)}
+              marginBottom={sizes.xs}>
+              <Text white>Continue</Text>
+            </Button>
+          </Block>
+        ) : step === 3 ? (
+          <Block marginVertical={sizes.sm} card>
+            <Text bold size={16}>
+              Residential Details
+            </Text>
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              RESIDENTIAL STATUS:
+            </FormControl.Label>
+            <Select
+              backgroundColor={'white'}
+              minWidth="200"
+              accessibilityLabel="Choose Service"
+              placeholder="Residential Status"
+              _selectedItem={{
+                bg: 'teal.600',
+                endIcon: <CheckIcon size={5} />,
+              }}
+              mt="1">
+              <Select.Item label="UX Research" value="ux" />
+              <Select.Item label="Web Development" value="web" />
+              <Select.Item label="Cross Platform Development" value="cross" />
+              <Select.Item label="UI Designing" value="ui" />
+              <Select.Item label="Backend Development" value="backend" />
+            </Select>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              PERMANENT RESIDENT IN PAKISTAN:
+            </FormControl.Label>
+            <Radio.Group
+              name="myRadioGroup"
+              accessibilityLabel="favorite number">
+              <HStack>
+                <Radio value="one" onChange={setZakat} my={1}>
+                  Yes
+                </Radio>
+                <Radio style={{marginLeft: 25}} value="two" my={1}>
+                  No
+                </Radio>
+              </HStack>
+            </Radio.Group>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              NATIONALITY
+            </FormControl.Label>
+            <Select
+              backgroundColor={'white'}
+              minWidth="200"
+              accessibilityLabel="Choose Service"
+              placeholder="Select Nationality"
+              _selectedItem={{
+                bg: 'teal.600',
+                endIcon: <CheckIcon size={5} />,
+              }}
+              mt="1">
+              <Select.Item label="Male" value="ux" />
+              <Select.Item label="Female" value="web" />
+            </Select>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              COUNTRY OF RESIDENCE
+            </FormControl.Label>
+            <Select
+              backgroundColor={'white'}
+              minWidth="200"
+              accessibilityLabel="Choose Service"
+              placeholder="Select Nationality"
+              _selectedItem={{
+                bg: 'teal.600',
+                endIcon: <CheckIcon size={5} />,
+              }}
+              mt="1">
+              <Select.Item label="Male" value="ux" />
+              <Select.Item label="Female" value="web" />
+            </Select>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              DO YOU HAVE OTHER RESIDENCE?
+            </FormControl.Label>
+            <Radio.Group
+              onChange={(value) => {
+                setIsOtherNationalities(value);
+              }}
+              name="myRadioGroup"
+              accessibilityLabel="favorite number">
+              <HStack>
+                <Radio value="true" my={1}>
+                  Yes
+                </Radio>
+                <Radio style={{marginLeft: 25}} value="false" my={1}>
+                  No
+                </Radio>
+              </HStack>
+            </Radio.Group>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              SPECIFY OTHER NATIONALITIES (IF APPLICABLE)?
+            </FormControl.Label>
+            <Input
+              placeholder="Enter Nationalities"
+              isDisabled={isOtherNationalities == 'true' ? true : false}
+            />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              DO YOU HOLD US PERMANENT RESIDENT CARD (GREEN CARD)?
+            </FormControl.Label>
+            <Radio.Group
+              name="myRadioGroup"
+              accessibilityLabel="favorite number">
+              <HStack>
+                <Radio value="true" my={1}>
+                  Yes
+                </Radio>
+                <Radio style={{marginLeft: 25}} value="false" my={1}>
+                  No
+                </Radio>
+              </HStack>
+            </Radio.Group>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              ARE YOU A US RESIDENT?
+            </FormControl.Label>
+            <Radio.Group
+              name="myRadioGroup"
+              accessibilityLabel="favorite number">
+              <HStack>
+                <Radio value="true" my={1}>
+                  Yes
+                </Radio>
+                <Radio style={{marginLeft: 25}} value="false" my={1}>
+                  No
+                </Radio>
+              </HStack>
+            </Radio.Group>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              ARE YOU TAX RESIDENT OF PAKISTAN AND/OR USA?
+            </FormControl.Label>
+            <Radio.Group
+              name="myRadioGroup"
+              accessibilityLabel="favorite number">
+              <HStack>
+                <Radio value="true" my={1}>
+                  Yes
+                </Radio>
+                <Radio style={{marginLeft: 25}} value="false" my={1}>
+                  No
+                </Radio>
+              </HStack>
+            </Radio.Group>
 
             <Button
               marginTop={sizes.sm}
