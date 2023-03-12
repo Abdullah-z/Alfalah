@@ -542,28 +542,24 @@ export default function KYC() {
             <FormControl.Label marginTop={sizes.xs} isRequired>
               PHONE NUMBER
             </FormControl.Label>
-            <HStack>
-              <Select
-                height={sizes.x}
-                backgroundColor={'white'}
-                minWidth="120"
-                accessibilityLabel="Select State"
-                placeholder="Select State"
-                _selectedItem={{
-                  bg: 'teal.600',
-                  endIcon: <CheckIcon size={5} />,
-                }}
-                mt="1">
-                <Select.Item label="Male" value="ux" />
-                <Select.Item label="Female" value="web" />
-              </Select>
-              <Input
-                marginTop={sizes.xs}
-                height={sizes.x}
-                minWidth="120"
-                placeholder="Enter Phone Number"
-              />
-            </HStack>
+            <Block row>
+              <View style={{width: '30%'}}>
+                <Select
+                  backgroundColor={'white'}
+                  accessibilityLabel="Select State"
+                  placeholder="Select State"
+                  _selectedItem={{
+                    bg: 'teal.600',
+                    endIcon: <CheckIcon size={5} />,
+                  }}>
+                  <Select.Item label="Male" value="ux" />
+                  <Select.Item label="Female" value="web" />
+                </Select>
+              </View>
+              <View style={{width: '70%'}}>
+                <Input placeholder="Enter Phone Number" />
+              </View>
+            </Block>
 
             <FormControl.Label marginTop={sizes.xs} isRequired>
               WHATSAPP NO.
