@@ -276,13 +276,26 @@ export default function KYC() {
               </HStack>
             </Radio.Group>
 
-            <Button
-              marginTop={sizes.sm}
-              primary
-              onPress={() => setStep(3)}
-              marginBottom={sizes.xs}>
-              <Text white>Continue</Text>
-            </Button>
+            <Block row justify="center">
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step - 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Back</Text>
+              </Button>
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step + 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Next</Text>
+              </Button>
+            </Block>
           </Block>
         ) : step === 3 ? (
           <Block marginVertical={sizes.sm} card>
@@ -434,13 +447,192 @@ export default function KYC() {
               </HStack>
             </Radio.Group>
 
-            <Button
-              marginTop={sizes.sm}
-              primary
-              onPress={pickImage}
-              marginBottom={sizes.xs}>
-              <Text white>Continue</Text>
-            </Button>
+            <Block row justify="center">
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step - 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Back</Text>
+              </Button>
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step + 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Next</Text>
+              </Button>
+            </Block>
+          </Block>
+        ) : step === 4 ? (
+          <Block marginVertical={sizes.sm} card>
+            <Text bold size={16}>
+              Contact Details
+            </Text>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              ADDRESS
+            </FormControl.Label>
+            <Input placeholder="Enter Address" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              CORRESPONDENCE ADDRESS
+            </FormControl.Label>
+            <Input placeholder="Enter Correspondence Address" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              CITY
+            </FormControl.Label>
+            <Select
+              backgroundColor={'white'}
+              minWidth="200"
+              accessibilityLabel="Choose Service"
+              placeholder="Select City"
+              _selectedItem={{
+                bg: 'teal.600',
+                endIcon: <CheckIcon size={5} />,
+              }}
+              mt="1">
+              <Select.Item label="Male" value="ux" />
+              <Select.Item label="Female" value="web" />
+            </Select>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              STATE
+            </FormControl.Label>
+            <Select
+              backgroundColor={'white'}
+              minWidth="200"
+              accessibilityLabel="Select State"
+              placeholder="Select State"
+              _selectedItem={{
+                bg: 'teal.600',
+                endIcon: <CheckIcon size={5} />,
+              }}
+              mt="1">
+              <Select.Item label="Male" value="ux" />
+              <Select.Item label="Female" value="web" />
+            </Select>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              ZIP CODE / POSTAL CODE
+            </FormControl.Label>
+            <Input placeholder="Enter Zip Code/ Postal Code" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              TEL NO. (RES)
+            </FormControl.Label>
+            <Input placeholder="Enter Tel No.(Res)" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              TEL NO. (OFF)
+            </FormControl.Label>
+            <Input placeholder="Enter Tel No.(OFF)" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              FAX
+            </FormControl.Label>
+            <Input placeholder="Enter Fax" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              PHONE NUMBER
+            </FormControl.Label>
+            <HStack>
+              <Select
+                backgroundColor={'white'}
+                minWidth="120"
+                accessibilityLabel="Select State"
+                placeholder="Select State"
+                _selectedItem={{
+                  bg: 'teal.600',
+                  endIcon: <CheckIcon size={5} />,
+                }}
+                mt="1">
+                <Select.Item label="Male" value="ux" />
+                <Select.Item label="Female" value="web" />
+              </Select>
+              <Input minWidth="120" placeholder="Enter Phone Number" />
+            </HStack>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              WHATSAPP NO.
+            </FormControl.Label>
+            <Input placeholder="Enter Whatsapp No" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              EMAIL
+            </FormControl.Label>
+            <Input placeholder="Enter Email Address" />
+
+            <Block row justify="center">
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step - 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Back</Text>
+              </Button>
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step + 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Next</Text>
+              </Button>
+            </Block>
+          </Block>
+        ) : step === 5 ? (
+          <Block marginVertical={sizes.sm} card>
+            <Text bold size={16}>
+              Tax Details
+            </Text>
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              TAX STATUS:
+            </FormControl.Label>
+            <Radio.Group
+              name="myRadioGroup"
+              accessibilityLabel="favorite number">
+              <HStack>
+                <Radio value="true" my={1}>
+                  Filer
+                </Radio>
+                <Radio style={{marginLeft: 25}} value="false" my={1}>
+                  Non-Filer
+                </Radio>
+              </HStack>
+            </Radio.Group>
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              NATIONAL TAX NO. (NTN)
+            </FormControl.Label>
+            <Input placeholder="Enter NTN" />
+            <Block row justify="center">
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step - 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Back</Text>
+              </Button>
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step + 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Next</Text>
+              </Button>
+            </Block>
           </Block>
         ) : (
           <></>
