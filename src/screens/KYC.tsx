@@ -380,7 +380,8 @@ export default function KYC() {
                 setIsOtherNationalities(value);
               }}
               name="myRadioGroup"
-              accessibilityLabel="favorite number">
+              accessibilityLabel="favorite number"
+              isDefault="false">
               <HStack>
                 <Radio value="true" my={1}>
                   Yes
@@ -396,7 +397,7 @@ export default function KYC() {
             </FormControl.Label>
             <Input
               placeholder="Enter Nationalities"
-              isDisabled={isOtherNationalities == 'true' ? true : false}
+              isDisabled={isOtherNationalities == 'false' ? true : false}
             />
 
             <FormControl.Label marginTop={sizes.xs} isRequired>
@@ -543,6 +544,7 @@ export default function KYC() {
             </FormControl.Label>
             <HStack>
               <Select
+                height={sizes.x}
                 backgroundColor={'white'}
                 minWidth="120"
                 accessibilityLabel="Select State"
@@ -555,7 +557,12 @@ export default function KYC() {
                 <Select.Item label="Male" value="ux" />
                 <Select.Item label="Female" value="web" />
               </Select>
-              <Input minWidth="120" placeholder="Enter Phone Number" />
+              <Input
+                marginTop={sizes.xs}
+                height={sizes.x}
+                minWidth="120"
+                placeholder="Enter Phone Number"
+              />
             </HStack>
 
             <FormControl.Label marginTop={sizes.xs} isRequired>
@@ -604,7 +611,7 @@ export default function KYC() {
                 <Radio value="true" my={1}>
                   Filer
                 </Radio>
-                <Radio style={{marginLeft: 25}} value="false" my={1}>
+                <Radio style={{marginLeft: sizes.sm}} value="false" my={1}>
                   Non-Filer
                 </Radio>
               </HStack>
@@ -613,6 +620,269 @@ export default function KYC() {
               NATIONAL TAX NO. (NTN)
             </FormControl.Label>
             <Input placeholder="Enter NTN" />
+            <Block row justify="center">
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step - 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Back</Text>
+              </Button>
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step + 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Next</Text>
+              </Button>
+            </Block>
+          </Block>
+        ) : step === 6 ? (
+          <Block marginVertical={sizes.sm} card>
+            <Text bold size={16}>
+              Bank Details
+            </Text>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              IBAN
+            </FormControl.Label>
+            <Input placeholder="Enter Account Number/IBAN" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              BANK ACCOUNT TITLE
+            </FormControl.Label>
+            <Input placeholder="Enter Account Number Title" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              BANK NAME
+            </FormControl.Label>
+            <Select
+              backgroundColor={'white'}
+              minWidth="120"
+              accessibilityLabel="Select State"
+              placeholder="Select Bank Name"
+              _selectedItem={{
+                bg: 'teal.600',
+                endIcon: <CheckIcon size={5} />,
+              }}
+              mt="1">
+              <Select.Item label="Male" value="ux" />
+              <Select.Item label="Female" value="web" />
+            </Select>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              BRANCH
+            </FormControl.Label>
+            <Input placeholder="Enter Branch" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              BRANCH CODE
+            </FormControl.Label>
+            <Input placeholder="Enter Branch Code" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              ADDRESS
+            </FormControl.Label>
+            <Input placeholder="Enter Address" />
+
+            <Block row justify="center">
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step - 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Back</Text>
+              </Button>
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step + 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Next</Text>
+              </Button>
+            </Block>
+          </Block>
+        ) : step === 7 ? (
+          <Block marginVertical={sizes.sm} card>
+            <Text bold size={16}>
+              Nominee Details (Optional)
+            </Text>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              NAME (MR./MS./MRS.)
+            </FormControl.Label>
+            <Input placeholder="Enter Name(MR./MS./MRS.)" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              RELATIONSHIP WITH INVESTOR
+            </FormControl.Label>
+            <Input placeholder="Enter Relationship With Investor" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              CNIC/NICOP NO.
+            </FormControl.Label>
+            <Input placeholder="Enter CNIC/NICOP NO" />
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              ISSUANCE DATE
+            </FormControl.Label>
+            <View>
+              <Button
+                marginHorizontal={sizes.xs}
+                style={{borderWidth: 1}}
+                onPress={showDatePicker}>
+                <Text primary>Select Date</Text>
+              </Button>
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+              />
+            </View>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              EXPIRY DATE
+            </FormControl.Label>
+            <View>
+              <Button
+                marginHorizontal={sizes.xs}
+                style={{borderWidth: 1}}
+                onPress={showDatePicker}>
+                <Text primary>Select Date</Text>
+              </Button>
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+              />
+            </View>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              ALLOCATION %
+            </FormControl.Label>
+            <Input value="100" isDisabled />
+
+            <Block row justify="center">
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step - 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Back</Text>
+              </Button>
+              <Button
+                width={'45%'}
+                marginHorizontal={sizes.xs}
+                marginTop={sizes.sm}
+                primary
+                onPress={() => setStep(step + 1)}
+                marginBottom={sizes.xs}>
+                <Text white>Next</Text>
+              </Button>
+            </Block>
+          </Block>
+        ) : step === 8 ? (
+          <Block marginVertical={sizes.sm} card>
+            <Text bold size={16}>
+              Account Management Instructions
+            </Text>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              INSTRUCTION TO OPERATE ACCOUNT
+            </FormControl.Label>
+            <Select
+              isDisabled
+              backgroundColor={'white'}
+              minWidth="120"
+              accessibilityLabel="Select State"
+              placeholder="Only the Principle Acount Holder"
+              _selectedItem={{
+                bg: 'teal.600',
+                endIcon: <CheckIcon size={5} />,
+              }}
+              mt="1">
+              <Select.Item label="Male" value="ux" />
+              <Select.Item label="Female" value="web" />
+            </Select>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              CASH DIVIDEND:
+            </FormControl.Label>
+            <Radio.Group
+              name="myRadioGroup"
+              accessibilityLabel="favorite number">
+              <HStack>
+                <Radio value="one" onChange={setZakat} my={1}>
+                  Re-Invest
+                </Radio>
+                <Radio style={{marginLeft: sizes.sm}} value="two" my={1}>
+                  Provide Cash
+                </Radio>
+              </HStack>
+            </Radio.Group>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              STOCK DIVIDEND:
+            </FormControl.Label>
+            <Radio.Group
+              name="myRadioGroup"
+              accessibilityLabel="favorite number">
+              <Radio value="one" onChange={setZakat} my={1}>
+                Issue Bonus Units
+              </Radio>
+              <Radio value="two" my={1}>
+                Encash Bonus Units
+              </Radio>
+            </Radio.Group>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              DO YOU WISH TO RECEIVE STATEMENT OF ACCOUNTS?
+            </FormControl.Label>
+            <Radio.Group
+              name="myRadioGroup"
+              accessibilityLabel="favorite number">
+              <HStack>
+                <Radio value="one" onChange={setZakat} my={1}>
+                  Yes
+                </Radio>
+                <Radio style={{marginLeft: sizes.sm}} value="two" my={1}>
+                  No
+                </Radio>
+              </HStack>
+            </Radio.Group>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              (IF YES, PLEASE SELECT THE NATURE OF MAIL)
+            </FormControl.Label>
+            <HStack>
+              <Checkbox onChange={setIsLifetimeExpiry}>Post</Checkbox>
+              <Checkbox marginLeft={sizes.sm} onChange={setIsLifetimeExpiry}>
+                Email
+              </Checkbox>
+            </HStack>
+
+            <FormControl.Label marginTop={sizes.xs} isRequired>
+              FOR ALL OTHER CORRESPONDENCE:
+            </FormControl.Label>
+            <HStack>
+              <Checkbox onChange={setIsLifetimeExpiry}>SMS</Checkbox>
+              <Checkbox marginLeft={sizes.sm} onChange={setIsLifetimeExpiry}>
+                Email
+              </Checkbox>
+            </HStack>
+
             <Block row justify="center">
               <Button
                 width={'45%'}
