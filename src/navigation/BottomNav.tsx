@@ -76,7 +76,7 @@ export default function BottomNav() {
         name="Home"
         component={Home}
         options={{
-          headerShown: true,
+          headerShown: false,
           tabBarIcon: ({focused}) => (
             <View
               style={{

@@ -17,6 +17,8 @@ import ReferFriend from '../screens/ReferFriend';
 import OTP from '../screens/OTP';
 import KYC from '../screens/KYC';
 import SideMenu from '../screens/SideMenu';
+import KYC2 from '../screens/KYC2';
+import FAQ from '../screens/FAQ';
 
 const Stack = createStackNavigator();
 
@@ -110,13 +112,19 @@ export default () => {
         component={ReferFriend}
         options={{headerShown: true}}
       />
-      <Stack.Screen name="KYC" component={KYC} options={{headerShown: true}} />
+      <Stack.Screen name="KYC" component={KYC} options={{headerShown: false}} />
       <Stack.Screen name="OTP" component={OTP} options={{headerShown: true}} />
       <Stack.Screen
         name="Side Menu"
         component={SideMenu}
         options={{headerShown: false}}
       />
+      <Stack.Screen
+        name="KYC2"
+        component={KYC2}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name="FAQ" component={FAQ} options={{headerShown: true}} />
     </Stack.Navigator>
   );
 };

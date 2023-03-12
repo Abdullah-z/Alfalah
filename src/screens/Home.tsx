@@ -1,6 +1,6 @@
-import {View, ScrollView, Image} from 'react-native';
+import {View, ScrollView, Image, Touchable} from 'react-native';
 import React from 'react';
-import {FormControl, Icon, Input} from 'native-base';
+import {FormControl, Icon, Input, Pressable} from 'native-base';
 import {useTheme} from '../hooks';
 import {Block, Button, Text} from '../components';
 import {Ionicons} from '@expo/vector-icons';
@@ -11,16 +11,17 @@ export default function Home() {
   const navigation = useNavigation();
   return (
     <ScrollView style={{backgroundColor: colors.white}}>
-      <Block style={{marginHorizontal: sizes.sm, marginVertical: sizes.sm}}>
-        <Block align="flex-end">
-          <Icon
-            onPress={() => navigation.navigate('Side Menu')}
-            mb="1"
-            as={<Ionicons name={'menu-outline'} />}
-            size="2xl"
-            color={colors.black}
-          />
-        </Block>
+      <Block safe style={{marginHorizontal: sizes.sm, marginTop: sizes.md}}>
+        <Pressable onPress={() => navigation.navigate('Side Menu')}>
+          <Block align="flex-end">
+            <Icon
+              mb="1"
+              as={<Ionicons name={'menu-outline'} />}
+              size="2xl"
+              color={colors.black}
+            />
+          </Block>
+        </Pressable>
         <View style={{alignItems: 'center'}}>
           <Image
             resizeMode="contain"
