@@ -98,7 +98,6 @@ const DrawerContent = (
   return (
     <DrawerContentScrollView
       {...props}
-      scrollEnabled
       removeClippedSubviews
       renderToHardwareTextureAndroid
       contentContainerStyle={{paddingBottom: sizes.padding}}>
@@ -219,7 +218,7 @@ export default () => {
   return (
     <Block gradient={gradients.light}>
       <Drawer.Navigator
-        screenOptions={{headerShown: false}}
+        screenOptions={{headerShown: false, swipeEnabled: false}}
         drawerType="slide"
         overlayColor="transparent"
         sceneContainerStyle={{backgroundColor: 'transparent'}}
