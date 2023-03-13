@@ -28,7 +28,7 @@ export default () => {
 
   return (
     <Stack.Navigator
-      initialRouteName={'Signin'}
+      initialRouteName={'KYC2'}
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Home"
